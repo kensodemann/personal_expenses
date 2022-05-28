@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
 class TransactionDetails extends StatelessWidget {
@@ -19,7 +20,7 @@ class TransactionDetails extends StatelessWidget {
           ),
         ),
         Text(
-          transaction.date.toString(),
+          DateFormat.yMMMd().format(transaction.date),
           style: const TextStyle(
             fontSize: 14,
             color: Colors.grey,
