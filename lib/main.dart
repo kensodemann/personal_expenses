@@ -30,8 +30,16 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: const Center(
-        child: Text('Hello World'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          Card(
+            child: Text('Chart'),
+          ),
+          Card(
+            child: Text('List of Transactions'),
+          ),
+        ],
       ),
     );
   }
