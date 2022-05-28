@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
+import 'package:personal_expenses/widgets/transaction_item.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,9 +56,7 @@ class MyHomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: transactions
                 .map(
-                  (tx) => Card(
-                    child: Text(tx.title),
-                  ),
+                  (tx) => TransactionItem(tx),
                 )
                 .toList(),
           )
