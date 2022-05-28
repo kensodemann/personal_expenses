@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
+import 'package:personal_expenses/widgets/transaction_editor.dart';
 import 'package:personal_expenses/widgets/transaction_item.dart';
 
 void main() {
@@ -59,7 +60,8 @@ class MyHomePage extends StatelessWidget {
                   (tx) => TransactionItem(tx),
                 )
                 .toList(),
-          )
+          ),
+          TransactionEditor(),
         ],
       ),
     );
