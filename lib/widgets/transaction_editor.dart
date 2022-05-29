@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TransactionEditor extends StatefulWidget {
-  const TransactionEditor({Key? key}) : super(key: key);
+  final Function onAddTransaction;
+
+  const TransactionEditor({Key? key, required this.onAddTransaction})
+      : super(key: key);
 
   @override
   State<TransactionEditor> createState() => _TransactionEditorState();
@@ -10,6 +13,20 @@ class TransactionEditor extends StatefulWidget {
 class _TransactionEditorState extends State<TransactionEditor> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+
+  void _submitForm() {
+    final title = _titleController.text;
+    final amount = double.parse(_amountController.text);
+
+    if (title.isEmpty || amount <= 0) {
+      return;
+    }
+
+    widget.onAddTransaction(title, amount);
+    _titleController.clear();
+    _amountController.clear();
+    // Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +45,9 @@ class _TransactionEditorState extends State<TransactionEditor> {
               controller: _amountController,
             ),
             TextButton(
-                onPressed: () {
-                  print(
-                      'title: ${_titleController.text}, amount: ${_amountController.text}');
-                },
-                child: const Text('Add Transaction')),
+              onPressed: _submitForm,
+              child: const Text('Add Transaction'),
+            ),
           ],
         ),
       ),
