@@ -31,14 +31,16 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          Card(
-            child: Text('Chart'),
-          ),
-          UserTransactions()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: const [
+            Card(
+              child: Text('Chart'),
+            ),
+            UserTransactions()
+          ],
+        ),
       ),
     );
   }
