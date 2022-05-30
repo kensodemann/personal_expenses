@@ -20,7 +20,7 @@ class TransactionAmount extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(10),
       child: Text(
-        '\$$amount',
+        '\$${amount.toStringAsFixed(2)}',
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,

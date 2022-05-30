@@ -39,10 +39,14 @@ class _TransactionEditorState extends State<TransactionEditor> {
             TextField(
               decoration: const InputDecoration(labelText: 'Title'),
               controller: _titleController,
+              onSubmitted: (_) => _submitForm(),
             ),
             TextField(
               decoration: const InputDecoration(labelText: 'Amount'),
               controller: _amountController,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
             ),
             TextButton(
               onPressed: _submitForm,
