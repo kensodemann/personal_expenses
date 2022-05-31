@@ -13,7 +13,7 @@ class Chart extends StatelessWidget {
         _recentTransactions.fold(0.0, (sum, item) => sum + item.amount);
 
     return List.generate(7, (index) {
-      final date = DateTime.now().subtract(Duration(days: 6 - index));
+      final date = DateTime.now().subtract(Duration(days: index));
       final label = DateFormat.E().format(date);
 
       double dayTotal = 0.0;
@@ -34,7 +34,7 @@ class Chart extends StatelessWidget {
           label: label,
         ),
       );
-    });
+    }).reversed.toList();
   }
 
   @override
