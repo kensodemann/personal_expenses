@@ -10,11 +10,29 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,
-      // crossAxisAlignment: CrossAxisAlignment.stretch,
-      child: ListView.builder(
-        itemBuilder: (ctx, idx) => TransactionItem(_transactions[idx]),
-        itemCount: _transactions.length,
-      ),
+      child: _transactions.isEmpty
+          ? Column(
+              children: [
+                Text(
+                  'You have no transactions!',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const SizedBox(
+                  height: 200,
+                  child: Image(
+                    image: AssetImage('assets/images/waiting.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            )
+          : ListView.builder(
+              itemBuilder: (ctx, idx) => TransactionItem(_transactions[idx]),
+              itemCount: _transactions.length,
+            ),
     );
   }
 }
