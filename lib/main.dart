@@ -8,7 +8,33 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  final theme = ThemeData(primarySwatch: Colors.purple);
+  final theme = ThemeData(
+    primarySwatch: Colors.purple,
+    fontFamily: 'Quicksand',
+    textTheme: ThemeData.light().textTheme.copyWith(
+          titleLarge: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          titleMedium: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+          titleSmall: const TextStyle(
+            fontFamily: 'Quicksand',
+            fontSize: 14,
+            color: Colors.grey,
+          ),
+        ),
+    appBarTheme: ThemeData().appBarTheme.copyWith(
+          titleTextStyle: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+          ),
+        ),
+  );
   static const title = 'Personal Expenses';
 
   @override

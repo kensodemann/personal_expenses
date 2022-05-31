@@ -14,17 +14,11 @@ class TransactionDetails extends StatelessWidget {
       children: [
         Text(
           transaction.title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         Text(
           DateFormat.yMMMd().format(transaction.date),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.grey,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
       ],
     );
