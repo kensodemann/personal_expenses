@@ -10,7 +10,7 @@ class TransactionAmount extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.purple,
+          color: Theme.of(context).primaryColor,
           width: 2,
         ),
       ),
@@ -21,10 +21,10 @@ class TransactionAmount extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Text(
         '\$${amount.toStringAsFixed(2)}',
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
-          color: Colors.purple,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );

@@ -2,20 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:personal_expenses/pages/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final theme = ThemeData(primarySwatch: Colors.purple);
+  static const title = 'Personal Expenses';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Personal Expenses',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
+      title: title,
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          secondary: Colors.pink,
+        ),
       ),
-      home: const MyHomePage(title: 'Personal Expenses'),
+      home: const MyHomePage(title: title),
     );
   }
 }
