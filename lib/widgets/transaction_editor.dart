@@ -25,7 +25,7 @@ class _TransactionEditorState extends State<TransactionEditor> {
     widget.onAddTransaction(title, amount);
     _titleController.clear();
     _amountController.clear();
-    // Navigator.of(context).pop();
+    Navigator.of(context).pop();
   }
 
   @override
