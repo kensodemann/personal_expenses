@@ -8,13 +8,13 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: _transactions
-          .map(
-            (tx) => TransactionItem(tx),
-          )
-          .toList(),
+    return SizedBox(
+      height: 300,
+      // crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView.builder(
+        itemBuilder: (ctx, idx) => TransactionItem(_transactions[idx]),
+        itemCount: _transactions.length,
+      ),
     );
   }
 }
