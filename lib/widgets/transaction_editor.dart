@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TransactionEditor extends StatefulWidget {
   final Function onAddTransaction;
@@ -13,16 +14,38 @@ class TransactionEditor extends StatefulWidget {
 class _TransactionEditorState extends State<TransactionEditor> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  DateTime? _selectedDate;
+
+  Future<void> _presentDatePicker() async {
+    final date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1970),
+      lastDate: DateTime.now(),
+    );
+
+    if (date != null) {
+      setState(() {
+        _selectedDate = date;
+      });
+    }
+  }
 
   void _submitForm() {
-    final title = _titleController.text;
-    final amount = double.parse(_amountController.text);
-
-    if (title.isEmpty || amount <= 0) {
+    if (_amountController.text.isEmpty ||
+        _titleController.text.isEmpty ||
+        _selectedDate == null) {
       return;
     }
 
-    widget.onAddTransaction(title, amount);
+    final title = _titleController.text;
+    final amount = double.parse(_amountController.text);
+
+    if (amount <= 0) {
+      return;
+    }
+
+    widget.onAddTransaction(title, amount, _selectedDate);
     _titleController.clear();
     _amountController.clear();
     Navigator.of(context).pop();
@@ -48,7 +71,22 @@ class _TransactionEditorState extends State<TransactionEditor> {
                   const TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submitForm(),
             ),
-            TextButton(
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(_selectedDate == null
+                        ? 'No Text Chosen'
+                        : DateFormat.yMd().format(_selectedDate!)),
+                  ),
+                  TextButton(
+                      onPressed: _presentDatePicker,
+                      child: const Text('Choose Date')),
+                ],
+              ),
+            ),
+            ElevatedButton(
               onPressed: _submitForm,
               child: const Text('Add Transaction'),
             ),
