@@ -3,9 +3,14 @@ import 'package:intl/intl.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
 class TransactionItem extends StatelessWidget {
+  final Function onRemoveTransaction;
   final Transaction transaction;
 
-  const TransactionItem(this.transaction, {Key? key}) : super(key: key);
+  const TransactionItem(
+    this.transaction, {
+    Key? key,
+    required this.onRemoveTransaction,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,11 @@ class TransactionItem extends StatelessWidget {
         subtitle: Text(
           DateFormat.yMMMd().format(transaction.date),
           style: Theme.of(context).textTheme.titleSmall,
+        ),
+        trailing: IconButton(
+          icon: const Icon(Icons.delete),
+          color: Theme.of(context).colorScheme.error,
+          onPressed: () => onRemoveTransaction(transaction.id),
         ),
       ),
     );

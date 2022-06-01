@@ -3,8 +3,13 @@ import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/transaction_item.dart';
 
 class TransactionList extends StatelessWidget {
+  final Function onRemoveTransaction;
   final List<Transaction> _transactions;
-  const TransactionList(this._transactions, {Key? key}) : super(key: key);
+  const TransactionList(
+    this._transactions, {
+    Key? key,
+    required this.onRemoveTransaction,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,10 @@ class TransactionList extends StatelessWidget {
               ],
             )
           : ListView.builder(
-              itemBuilder: (ctx, idx) => TransactionItem(_transactions[idx]),
+              itemBuilder: (ctx, idx) => TransactionItem(
+                _transactions[idx],
+                onRemoveTransaction: onRemoveTransaction,
+              ),
               itemCount: _transactions.length,
             ),
     );
