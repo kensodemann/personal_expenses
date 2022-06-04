@@ -53,44 +53,53 @@ class _TransactionEditorState extends State<TransactionEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: const InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => _submitForm(),
-            ),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Amount'),
-              controller: _amountController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submitForm(),
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(_selectedDate == null
-                        ? 'No Text Chosen'
-                        : DateFormat.yMd().format(_selectedDate!)),
-                  ),
-                  TextButton(
-                      onPressed: _presentDatePicker,
-                      child: const Text('Choose Date')),
-                ],
+    final mediaQuery = MediaQuery.of(context);
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: mediaQuery.viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => _submitForm(),
               ),
-            ),
-            ElevatedButton(
-              onPressed: _submitForm,
-              child: const Text('Add Transaction'),
-            ),
-          ],
+              TextField(
+                decoration: const InputDecoration(labelText: 'Amount'),
+                controller: _amountController,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (_) => _submitForm(),
+              ),
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(_selectedDate == null
+                          ? 'No Text Chosen'
+                          : DateFormat.yMd().format(_selectedDate!)),
+                    ),
+                    TextButton(
+                        onPressed: _presentDatePicker,
+                        child: const Text('Choose Date')),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: const Text('Add Transaction'),
+              ),
+            ],
+          ),
         ),
       ),
     );
