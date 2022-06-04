@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_expenses/widgets/adaptive_elevated_button.dart';
+import 'package:personal_expenses/widgets/adaptive_text_button.dart';
 
 class TransactionEditor extends StatefulWidget {
   final Function onAddTransaction;
@@ -62,7 +64,7 @@ class _TransactionEditorState extends State<TransactionEditor> {
             top: 10,
             left: 10,
             right: 10,
-            bottom: mediaQuery.viewInsets.bottom + 10,
+            bottom: mediaQuery.viewInsets.bottom + 30,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -88,15 +90,16 @@ class _TransactionEditorState extends State<TransactionEditor> {
                           ? 'No Text Chosen'
                           : DateFormat.yMd().format(_selectedDate!)),
                     ),
-                    TextButton(
-                        onPressed: _presentDatePicker,
-                        child: const Text('Choose Date')),
+                    AdaptiveTextButton(
+                      onPressed: _presentDatePicker,
+                      text: 'Choose Date',
+                    ),
                   ],
                 ),
               ),
-              ElevatedButton(
+              AdaptiveElevatedButton(
                 onPressed: _submitForm,
-                child: const Text('Add Transaction'),
+                text: 'Add Transaction',
               ),
             ],
           ),
