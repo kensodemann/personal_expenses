@@ -13,34 +13,31 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: _transactions.isEmpty
-          ? Column(
-              children: [
-                Text(
-                  'You have no transactions!',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  height: 200,
-                  child: Image(
-                    image: AssetImage('assets/images/waiting.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
-            )
-          : ListView.builder(
-              itemBuilder: (ctx, idx) => TransactionItem(
-                _transactions[idx],
-                onRemoveTransaction: onRemoveTransaction,
+    return _transactions.isEmpty
+        ? Column(
+            children: [
+              Text(
+                'You have no transactions!',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              itemCount: _transactions.length,
+              const SizedBox(
+                height: 20,
+              ),
+              const SizedBox(
+                height: 200,
+                child: Image(
+                  image: AssetImage('assets/images/waiting.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          )
+        : ListView.builder(
+            itemBuilder: (ctx, idx) => TransactionItem(
+              _transactions[idx],
+              onRemoveTransaction: onRemoveTransaction,
             ),
-    );
+            itemCount: _transactions.length,
+          );
   }
 }
